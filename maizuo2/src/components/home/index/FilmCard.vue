@@ -1,0 +1,59 @@
+<template>
+<div class="film-item">
+    <img :src="data.cover"/>
+    <div class="text">
+        <h3 class="title">{{data.name}}</h3>
+        <p class="subtitle" v-if="type==='playing'">{{data.cinemaCount}}家影院上映 &nbsp;{{data.watchCount}}人购票</p>
+        <p class="grade" v-if="type==='playing'">{{data.grade}}</p>
+        <p class="time" v-if="type==='coming'">{{data.premiereAt | formatDate}}上映</p>
+    </div>
+</div>
+</template>
+
+<script>
+export default {
+    props: {
+        data: Object,
+        type: String
+    }
+}
+</script>
+
+<style scoped>
+.film-item{
+    padding: 0 20px;
+    padding-top: 20px;
+}
+.film-item img{
+    width: 100%;
+}
+.film-item .text{
+    padding: 10px;
+    background: #fff;
+    position: relative;
+}
+.film-item .title{
+    font-size: 14px;
+    color: #333;
+    font-weight: normal;
+}
+.film-item .subtitle{
+    font-size: 12px;
+    color: #9a9a9a;
+}
+.film-item .grade, .film-item .time{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.film-item .grade{
+    font-size: 20px;
+    font-weight: bold;
+    color: #f78360;
+}
+.film-item .time{
+    font-size: 12px;
+    color: rgb(245, 162, 125);
+}
+</style>
